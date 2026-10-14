@@ -1,0 +1,453 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>JTI Smoking Ritual Briefing</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: briefing document, sticky contents rail on wide screens, single reading column on phone */
+:root{
+  --bg:#f6f7f5; --surface:#ffffff; --fg:#1d2420; --muted:#5b6660; --line:#dfe3df;
+  --leaf:#2f5d46; --leaf-soft:#e3ece6; --ember:#a8551c; --ember-soft:#f6e9de;
+  --f-display:"Spectral", Georgia, "Times New Roman", serif;
+  --f-body:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#141917; --surface:#1b2120; --fg:#e4e9e5; --muted:#9aa59f; --line:#2c3532;
+  --leaf:#7fbf9c; --leaf-soft:#20302a; --ember:#e39a62; --ember-soft:#33261c; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#141917; --surface:#1b2120; --fg:#e4e9e5; --muted:#9aa59f; --line:#2c3532;
+  --leaf:#7fbf9c; --leaf-soft:#20302a; --ember:#e39a62; --ember-soft:#33261c; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.6;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:0 64px}
+.wrap{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:220px minmax(0,1fr);gap:56px}
+@media (max-width:900px){.wrap{grid-template-columns:minmax(0,1fr);gap:0}.toc{display:none}}
+
+header.top{max-width:1120px;margin:0 auto;padding-block:48px 32px;border-bottom:1px solid var(--line);margin-bottom:40px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ember)}
+h1{font-family:var(--f-display);font-weight:700;font-size:clamp(30px,5vw,46px);line-height:1.12;margin:10px 0 14px;text-wrap:balance;max-width:22ch}
+.lede{color:var(--muted);max-width:64ch;margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:22px;font-size:13.5px;color:var(--muted)}
+.meta b{color:var(--fg);font-weight:600}
+
+.toc{position:sticky;top:calc(env(safe-area-inset-top, 0px) + 24px);align-self:start;font-size:13.5px}
+.toc p{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:6px;counter-reset:t}
+.toc a{color:var(--fg);text-decoration:none;display:flex;gap:10px}
+.toc a::before{counter-increment:t;content:counter(t);font-family:var(--f-mono);color:var(--muted);min-width:16px}
+.toc a:hover,.toc a:focus-visible{color:var(--leaf)}
+
+main{min-width:0}
+section{padding-block:8px 36px;border-bottom:1px solid var(--line);margin-bottom:36px}
+section:last-of-type{border-bottom:0}
+h2{font-family:var(--f-display);font-weight:600;font-size:clamp(23px,3vw,29px);line-height:1.2;margin:0 0 6px;text-wrap:balance}
+.sec-sub{color:var(--muted);margin:0 0 22px;max-width:64ch;font-size:15px}
+h3{font-family:var(--f-body);font-weight:600;font-size:17px;margin:26px 0 8px}
+p,li{max-width:68ch}
+ul{padding-left:20px;margin:8px 0}
+li{margin:5px 0}
+li::marker{color:var(--leaf)}
+.ts{font-family:var(--f-mono);font-size:12px;color:var(--ember);background:var(--ember-soft);padding:1px 6px;border-radius:3px;white-space:nowrap}
+q{font-style:italic;quotes:"\201C" "\201D"}
+
+.callout{background:var(--leaf-soft);border-radius:6px;padding:18px 20px;margin:18px 0;max-width:72ch}
+.callout h3{margin-top:0;color:var(--leaf)}
+.callout ul{margin-bottom:0}
+
+/* exec summary list */
+.keys{list-style:none;padding:0;display:grid;gap:14px;margin:0}
+.keys li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;max-width:72ch}
+.keys li span{font-family:var(--f-mono);font-size:13px;color:var(--leaf);padding-top:2px}
+
+/* chain diagram */
+.chain{display:flex;flex-wrap:wrap;align-items:stretch;gap:0;margin:20px 0}
+.chain .step{flex:1 1 150px;min-width:0;background:var(--surface);border:1px solid var(--line);padding:14px;font-size:14px;position:relative}
+.chain .step + .step{border-left:0}
+.chain .step b{display:block;font-family:var(--f-mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--leaf);margin-bottom:4px}
+.chain .step.pain b{color:var(--ember)}
+@media (max-width:620px){.chain{flex-direction:column}.chain .step + .step{border-left:1px solid var(--line);border-top:0}}
+
+/* grids */
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:16px 0}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:16px 0}
+@media (max-width:760px){.grid2,.grid3{grid-template-columns:minmax(0,1fr)}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;min-width:0}
+.card h4{margin:0 0 6px;font-size:15.5px;font-weight:600}
+.card p,.card li{font-size:14.5px;margin:4px 0}
+.card ul{padding-left:18px;margin:4px 0}
+.tag{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+
+/* tables */
+.tbl{overflow-x:auto;margin:16px 0;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:560px}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500;background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600;white-space:nowrap}
+
+/* journey */
+.journey{display:grid;grid-template-columns:3fr 1.3fr 1fr;gap:10px;margin:18px 0}
+@media (max-width:760px){.journey{grid-template-columns:minmax(0,1fr)}}
+.lane{border-radius:6px;padding:14px 16px;min-width:0;border:1px solid var(--line);background:var(--surface)}
+.lane .tag{display:block;margin-bottom:4px}
+.lane h4{margin:0 0 8px;font-size:16px}
+.lane .sub{border-top:1px dashed var(--line);padding-top:8px;margin-top:8px;font-size:14px}
+.lane.smk{border-top:4px solid var(--ember)}
+.lane.mcu{border-top:4px solid var(--muted)}
+.lane.rrp{border-top:4px solid var(--leaf)}
+
+/* timeline */
+.flow{list-style:none;padding:0;margin:0;display:grid;gap:0}
+.flow li{display:grid;grid-template-columns:76px minmax(0,1fr);gap:14px;padding:12px 0;border-bottom:1px solid var(--line);max-width:none}
+.flow li:last-child{border-bottom:0}
+.flow .t{font-family:var(--f-mono);font-size:13px;color:var(--ember);padding-top:2px;font-variant-numeric:tabular-nums}
+.flow b{display:block;font-weight:600}
+.flow span.d{color:var(--muted);font-size:14.5px}
+
+.note{font-size:13.5px;color:var(--muted);max-width:72ch}
+a{color:var(--leaf)}
+:focus-visible{outline:2px solid var(--leaf);outline-offset:2px}
+</style>
+</head><body>
+
+<header class="top">
+  <div class="eyebrow">JTI consumer segmentation · Netscribes team briefing</div>
+  <h1>Why people smoke, and how JTI wants the next segmentation built</h1>
+  <p class="lede">Detailed summary of the JTI onboarding session on the smoking ritual, the 5W+H framework, the old vs new segmentation thinking, and the sampling and weighting discussion. Written for our project team so everyone has the same grounding before the questionnaire walkthrough.</p>
+  <div class="meta">
+    <span><b>Length</b> ~86 min recording</span>
+    <span><b>Led by</b> JTI consumer insights (Geneva), with Federico</span>
+    <span><b>Our side</b> Netscribes analytics team</span>
+    <span><b>Next</b> Questionnaire and segment build session</span>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="Contents">
+    <p>Contents</p>
+    <ol>
+      <li><a href="#summary">Executive summary</a></li>
+      <li><a href="#moments">Fulfilling moments</a></li>
+      <li><a href="#ritual">The ritual: senses</a></li>
+      <li><a href="#feelings">The feelings</a></li>
+      <li><a href="#qa1">Switching and young adults</a></li>
+      <li><a href="#fivew">The 5W+H framework</a></li>
+      <li><a href="#old">Old segmentation, what went wrong</a></li>
+      <li><a href="#new">New segmentation design</a></li>
+      <li><a href="#sampling">Sampling and weighting</a></li>
+      <li><a href="#forus">What this means for us</a></li>
+      <li><a href="#flow">Session flow by timestamp</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <section id="summary">
+      <h2>Executive summary</h2>
+      <p class="sec-sub">If you read only one part, read this.</p>
+      <ul class="keys">
+        <li><span>01</span><div><b>JTI's mandate is "fulfilling moments".</b> Smoking gives pleasure in three ways: the five-minute moment, the five senses, and the feelings. The feelings are the "engine room". The physical side carries maybe 20 to 25% of it.</div></li>
+        <li><span>02</span><div><b>The same act plays a different role in each moment.</b> A cigarette is a <q>soundtrack to the situation</q>. Morning cigarette is about energising, Friday pub cigarette is about social connection. Every pleasure comes with pain points, and in nicotine they are the most severe of any category.</div></li>
+        <li><span>03</span><div><b>The sensorial ritual is what goes missing when people switch.</b> Smell of the pack, lighting, watching the smoke, how you hold it, how you kill it. When smokers move to heat-not-burn or vapes, these small delights 15 times a day disappear, which shows up as struggle.</div></li>
+        <li><span>04</span><div><b>Everything in the questionnaire sits under 5W+H:</b> Who, Why, Where (moments), What, How (behaviour change stages). "What's next" is out of scope. JTI does not want any new frameworks out of this project.</div></li>
+        <li><span>05</span><div><b>The old segmentation was believable but not usable.</b> Segments like Traditional Confident and Image Seekers came from throwing everything into clustering. They needed huge batteries, took 10 minutes each to explain, felt Western, and did not help anyone sell in store.</div></li>
+        <li><span>06</span><div><b>The new one has two layers.</b> Layer 1 is behavioural and explains category to category change (smoker, multi-category user, RRP user, plus affinity to their behaviour). Layer 2 is psychographic and explains brand to brand choice.</div></li>
+        <li><span>07</span><div><b>The bar is simple, distinctive, measurable, actionable and market-relevant.</b> Elevator test: explain segment 1 vs 2 between the 7th and 1st floor. Ambition is to get from ~250 variables to about 4 to 6 "golden questions" a kiosk can ask before handing out a Ploom device.</div></li>
+        <li><span>08</span><div><b>Our pilot work maps straight onto this.</b> The forces of progress (push, pull, anxiety, habit) that our pilot analysis was built on is the same lens JTI is using for "why people change".</div></li>
+        <li><span>09</span><div><b>Sampling:</b> nationally representative base of nicotine users per market plus boosts for low-incidence groups, roughly similar sample per market (around 1,500), full demographics this time. Weighting is not applied while building segments, only afterwards for sizing.</div></li>
+      </ul>
+    </section>
+
+    <section id="moments">
+      <h2>Fulfilling moments: where it all starts</h2>
+      <p class="sec-sub">JTI's company mandate is to "create fulfilling moments and a better future". The speaker opened by unpacking what a moment and fulfilment actually mean.</p>
+
+      <h3>Pleasure needs a vehicle</h3>
+      <p>All of us, and the animal kingdom too, seek pleasure. It is a coping mechanism for boredom and pressure. But pleasure needs either an activity (watching your football team) or something you use (chocolate, wine). Smoking is one such vehicle and it delivers in three ways: <b>moments in time</b>, the <b>five senses</b>, and the <b>feelings</b>.</p>
+
+      <h3>The five-minute moment</h3>
+      <ul>
+        <li>A moment is simply the slice of time people are willing to give to smoking. For a cigarette, about five minutes.</li>
+        <li>Many smokers smoke almost by the clock: first coffee, then through the day. Some at fixed times (11 o'clock, 2 o'clock). During COVID lockdowns lots of smokers talked about going to the balcony around 4 or 5 pm every day.</li>
+        <li>Five minutes fits between almost anything: between two meetings, before the bus comes.</li>
+        <li>It is also long enough to recompose. The analogy used was a boxer losing a fight who gets one minute in the corner, comes back and wins. Here you get five.</li>
+        <li><b>"Whistle-stop of pleasure":</b> you can smoke at any point of the day. Wine in the morning or an energy drink before bed looks wrong. Most categories are boxed into certain occasions and times; cigarettes are not.</li>
+      </ul>
+
+      <h3>How a fulfilling moment comes together</h3>
+      <div class="chain" role="list" aria-label="How a fulfilling moment forms">
+        <div class="step" role="listitem"><b>Circumstances</b>Where I am, who with, what I'm doing, when, why. Changes all day.</div>
+        <div class="step" role="listitem"><b>Need state</b>Dark grumpy morning: energise. Friday at the pub: connect with friends.</div>
+        <div class="step" role="listitem"><b>Opportunity to smoke</b>The need state is made better by smoking than not. Some go home early from a night out without cigarettes.</div>
+        <div class="step pain" role="listitem"><b>Pain points</b>Every pleasure has a cost. Here: health, cost, stigma and more. Most severe of any category.</div>
+      </div>
+
+      <h3>How many moments are there?</h3>
+      <p>Billions of consumers, but in the end <q>we are all a little bit boring</q>. Day routines look much the same everywhere, India or Geneva.</p>
+      <div class="grid2">
+        <div class="card"><span class="tag">Routine moments</span><ul>
+          <li>Starting the day (coffee or tea, getting ready)</li>
+          <li>Commute, from leaving home to starting work</li>
+          <li>Routine breaks at work, alone or with colleagues</li>
+          <li>After meals</li>
+          <li>Relaxing at home in the evening</li>
+          <li>Close of the day</li></ul></div>
+        <div class="card"><span class="tag">Frequent non-routine moments</span><ul>
+          <li>Stress</li>
+          <li>Boredom</li>
+          <li>Celebration, the "cigar moment" after a good presentation or client result</li>
+          <li>Socialising, which depends heavily on who you're with (family vs work friends)</li></ul></div>
+      </div>
+
+      <h3>Rituals vs routine acts</h3>
+      <p>Brushing teeth or putting on socks are forgettable routine acts. Some sequences carry meaning, like a wedding ring. Smoking looks identical to a non-smoker every time, but smokers describe it as <q>a soundtrack to the situation at that moment</q>, like a song chosen for your mood. Same act, completely different role depending on the situation.</p>
+    </section>
+
+    <section id="ritual">
+      <h2>The ritual across the five senses</h2>
+      <p class="sec-sub">The physicality of the cigarette, from opening the pack to putting it out. JTI puts this at roughly 20 to 25% of the overall appeal.</p>
+
+      <div class="grid2">
+        <div class="card"><h4>1. Opening the pack</h4><ul>
+          <li><b>Nature smells.</b> Like a bakery, coffee beans or fresh bread. Non-smokers enjoy walking into cigar and pipe shops for the smell.</li>
+          <li><b>Visual order.</b> 20 sticks neatly packed, like an army parade.</li>
+          <li><b>Simplicity and tradition.</b> Hundreds of years old and authentic. With AI and tech everywhere, people like stepping back to traditional things.</li>
+          <li><b>Touch.</b> Like gardeners who love getting their hands on leaves.</li></ul></div>
+        <div class="card"><h4>2. Lighting it</h4><ul>
+          <li><b>Taming fire.</b> Humans love fire (cooking, protection, light) but know it can hurt or kill.</li>
+          <li><b>The edge of smoking</b> comes from here. Watch a smoker's panic if he drops one. Bruce Willis in Die Hard with a cigarette works; with a nicotine patch it doesn't.</li>
+          <li><b>Prometheus:</b> holding fire in your hand, close to your lips.</li>
+          <li><b>Lighthouse:</b> alone at a bus stop at night, lighting up lets the world know you're there.</li></ul></div>
+        <div class="card"><h4>3. The smoke</h4><ul>
+          <li><b>Serenity.</b> A cigarette on a balcony in the Alps, watching smoke drift away.</li>
+          <li><b>Taste.</b> Real tobacco taste only comes from a cigarette. Heat-not-burn doesn't get close. Like barbecue chicken vs oven chicken.</li>
+          <li><b>Body language.</b> Happy smokers blow upwards, deliberate. Bad day, blowing at their feet.</li>
+          <li><b>Seeing the smoke matters.</b> Smoking in a dark room would be pointless for many.</li>
+          <li><b>Breathing under stress.</b> When stressed it's less about nicotine or taste and more about the slow inhale and exhale.</li></ul></div>
+        <div class="card"><h4>4. Holding it</h4><ul>
+          <li><b>Personalisation:</b> "who am I". Marilyn Monroe's sultry hold, Bogart's cigarette hanging from the lip.</li>
+          <li>The shape is like a pencil or crayon, familiar from childhood, and you can carry on doing other things while holding it.</li>
+          <li>In the 60s and 70s tobacco companies actually segmented smokers by how they held cigarettes.</li>
+          <li>Some hide it behind their back between drags so no one sees.</li></ul></div>
+        <div class="card"><h4>5. Extinguishing it</h4><ul>
+          <li>Smokers say "let me kill this cigarette". There is satisfaction in stopping the clock on the five minutes: crushing, stomping, drowning.</li>
+          <li>It sends messages. Stub it out and leave when you walk in: I don't want to be here. Stub one out and light another when you arrive: I want to stay with you.</li></ul></div>
+        <div class="card" style="background:var(--ember-soft);border-color:transparent"><h4>Why this matters for switching</h4>
+          <p>When smokers move to heat-not-burn or vapes, all these sensorial delights they've had 15 times a day for most of their lives start to disappear. That is where the "little struggles" with RRP products come from, and why many don't simply take up vaping or heat-not-burn.</p></div>
+      </div>
+    </section>
+
+    <section id="feelings">
+      <h2>The feelings: the engine room</h2>
+      <p class="sec-sub">This is where most of the pull of smoking sits. Four feelings were covered.</p>
+      <div class="grid2">
+        <div class="card"><h4>Retreat</h4><p>An accepted excuse to step away from people or situations. At a wedding where you know no one, you wave your pack and go outside. Walking around outside the office kicking stones looks odd; doing the same with a cigarette looks fine. Stigma is real and rising, but this "reason to get away" is something smokers value.</p></div>
+        <div class="card"><h4>Connoisseurship</h4><p>There's a narrative that all brands are the same and everyone buys on price. People are looking for cheaper cigarettes, because they've become so expensive. But smokers know more about smoking than about wine or chocolate: tobacco tastes, counterfeits, dry vs moist. Some pick unusual brands to stand out, others the same brand as everyone to belong. Doing something 15 times a day for life, you learn the nuances.</p></div>
+        <div class="card"><h4>Social facilitation</h4><p>The most important one, because <b>this is where the category begins</b>. Nobody starts by buying a pack alone at 18 or 19. It starts socially, a cigarette over a beer at university. Offering and lighting someone's cigarette is social currency. Smokers stand in a circle. Social smoking has nothing to do with nicotine or taste; it's body language.</p></div>
+        <div class="card"><h4>Self-expression</h4><p>The cigarette is an extension of who you are. The way Bruce Willis smokes tells you about the character; the way Marilyn Monroe smokes is very different.</p></div>
+      </div>
+      <div class="callout">
+        <h3>The Pulp Fiction scene</h3>
+        <p>Used to tie it all together. Uma Thurman smokes a manufactured cigarette, holding it suggestively and blowing smoke at John Travolta to get his attention. He avoids eye contact while rolling his own with real craft. Intrigued, she stubs hers out and asks for one of his. The moment he hands it over and lights it, they connect. Every element is in that one scene: holding, blowing, stubbing, sharing, lighting, and what each person's smoking says about them.</p>
+      </div>
+      <p class="note">The speaker said this introduction is given to all new JTI joiners and agencies, so we understand what they mean when they talk about moments and pain points.</p>
+    </section>
+
+    <section id="qa1">
+      <h2>Q&amp;A: switching behaviour and young adults</h2>
+      <h3>How do people change, given the ritual and the struggle?</h3>
+      <ul>
+        <li>Two broad types. Some want to keep smoking and look for a cigarette-like experience wherever they can. Others find the <q>heat in the kitchen</q> so bad they want to leave smoking behind completely and take up something new.</li>
+        <li><b>Market context shapes the route.</b> In Japan, where smoking stayed normal for long, heat-not-burn worked as a "new way of smoking", especially for younger smokers. In the UK and US, stigma is so strong that people want nothing cigarette-like, so they go to vapes, pouches and new flavours.</li>
+        <li><b>Individual nature matters too.</b> Exploratory people get far more from the RRP world (pouches, heat-not-burn, flavours). Cigarettes have many brands, but as a tool they are fairly bland. This is part of why the segmentation is being done.</li>
+      </ul>
+      <h3>Do younger generations feel the same?</h3>
+      <ul>
+        <li><b>Language rule:</b> always say <b>"young adults" / "younger adults"</b> when talking about nicotine users. JTI will correct this in our writing; it's standard for every agency.</li>
+        <li>Young adults are moving towards vapes and pouches as a step away from "old-fashioned" smoking, and the data suggests they stay in RRP rather than moving on to cigarettes.</li>
+        <li>Even so, per JTI's tracker, <b>cigarettes are still the biggest entry point into nicotine today</b>. And many developing markets have no RRP at all, so the young vs old story depends on the market.</li>
+      </ul>
+    </section>
+
+    <section id="fivew">
+      <h2>The 5W+H framework</h2>
+      <p class="sec-sub">JTI's structure for understanding consumers. Earlier they called it the 6Ws. For years questionnaires muddled topics across these buckets; now every question is placed deliberately.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>Bucket</th><th>The question</th><th>What sits under it</th></tr></thead>
+        <tbody>
+          <tr><td>Who</td><td>Who are our consumers?</td><td>Demographics, psychographics, behaviour (sole smokers, multi-category users, RRP soloists), segmentation, behavioural stages. Purely descriptive, doesn't explain why. Old focus was LA-24 new entrants and gender (pink packs vs black "macho" packs); the category is now far more nuanced. Differences need to be simple and differentiating.</td></tr>
+          <tr><td>Why</td><td>Why do they use a product, and why do they change?</td><td><b>Use:</b> 5 consumption jobs (relax, energise, moment of joy, foster relationships, boredom). Category agnostic. <b>Change:</b> 5 pain points (health, price, stigma, inability to fit in, regulation). Price example: UK packs now cost close to £20. New study with ReWired on Forces of Progress. Years ago JTI assumed taste, pack or brand drove smoking; it turned out far more emotional.</td></tr>
+          <tr><td>Where</td><td>In which moments?</td><td>Usage situations, category agnostic. Smokers and vapers often use in the same places; a pouch works where you can't smoke. Moment list is now locked. Some markets used to have 35 moments, the panel had 12.</td></tr>
+          <tr><td>What</td><td>What do they look for in our products?</td><td>Equity (brand image) vs product (tobacco taste, satisfaction, ease of maintenance, new flavours). Kept at macro-driver level, not every feature. Some items changed after legal feedback.</td></tr>
+          <tr><td>How</td><td>Where are they in behaviour change?</td><td>Transtheoretical model: aware of a problem, consider, plan, trial, buy. Self-efficacy (how confident am I that I can change). Goal: know who has an awareness, consideration or planning problem and what in-store intervention helps. Links into shopper.</td></tr>
+          <tr><td>What's next</td><td>The future</td><td>Scenario planning. <b>Out of scope</b> for this project.</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>Framework fatigue</h3>
+      <ul>
+        <li>JTI has built framework after framework over the years: segmentations (13 segments, then 7), behavioural stages, Schwartz values, Ipsos Censydiam, jobs to be done. <b>Explicit ask: don't create more frameworks from this research.</b></li>
+        <li>Until about 2 to 3 years ago, a JTI questionnaire could go out without a single question on moments. Now moments are seen as essential.</li>
+        <li>Why moments matter for switching: asking someone to quit and use heat-not-burn forever is scary. Asking them to replace one smoking moment with heat-not-burn, then more over time, is how change happens.</li>
+        <li>They want coverage as holistic as possible, within a limit on questionnaire length.</li>
+      </ul>
+    </section>
+
+    <section id="old">
+      <h2>The old segmentation and what went wrong</h2>
+      <p class="sec-sub">The previous segments made sense on paper, but they did not connect to trade and were costly to use.</p>
+      <div class="grid3">
+        <div class="card"><h4>Traditional Confident</h4><p>Older, around 55, heavy smoker. Focused on the positives, wants tobacco flavour, low pain points, not smoking for image or social reasons.</p></div>
+        <div class="card"><h4>Image Seekers / Mindset</h4><p>The "cool" younger, trendy adult, university age.</p></div>
+        <div class="card"><h4>Smart Economizers</h4><p>Looking for cheaper but better value, maybe a cheaper capsule.</p></div>
+        <div class="card"><h4>Conscious</h4><p>Those feeling the stigma.</p></div>
+        <div class="card"><h4>Socializers</h4><p>Defined by smoking mainly in social moments.</p></div>
+        <div class="card" style="background:var(--ember-soft);border-color:transparent"><h4>The core problem</h4><p><q>Now how do I sell more cigarettes in store with that?</q></p></div>
+      </div>
+      <h3>Why it didn't work</h3>
+      <ul>
+        <li><b>Built by throwing everything in.</b> Drivers, pain points, life attitudes, lifestyles and moment circumstances all went into the algorithm, and statistics decided the clusters. Some segments ended up defined by moments, some by psychographics, some by a pain point. A mismatch.</li>
+        <li><b>Every behaviour sat in every segment.</b> Sole smokers, multi-category users and even RRP soloists were spread across all segments, so it was hard to act on.</li>
+        <li><b>Too expensive to reuse.</b> Long batteries were needed to recruit even for qual. Every study carried the cost.</li>
+        <li><b>Hard to explain.</b> About 10 minutes per segment.</li>
+        <li><b>Felt Western.</b> Pictures and lives were Western; developing markets couldn't relate.</li>
+        <li><b>Weak link to trade.</b> This time JTI wants a much stronger connection between segmentation and trade.</li>
+      </ul>
+      <div class="callout">
+        <h3>Why segmentation is different in this category</h3>
+        <p>Tobacco is a "dark" category. TV and most point-of-sale communication are banned, so segmentation is used heavily for media planning and communication, and activation has to be behaviour-led and pain-point-led. That is why the variables used will always differ from other FMCG categories.</p>
+      </div>
+    </section>
+
+    <section id="new">
+      <h2>The new segmentation design</h2>
+      <p class="sec-sub">Behaviour first. Full build detail is coming in the next session; this is the early thinking shared.</p>
+
+      <h3>Layer 1: behavioural, explains category to category change</h3>
+      <p>Based on what people actually use, plus their <b>affinity</b> to it: how much do I like my smoking, my heat-not-burn, or both if I'm multi-category. Consumers are on a behavioural journey.</p>
+      <div class="journey">
+        <div class="lane smk"><span class="tag">~70 to 80% of nicotine users</span><h4>Smokers</h4>
+          <p style="font-size:14px;margin:0">Many markets are still smoking-only. Even where RRP is everywhere, many choose to smoke despite the pain.</p>
+          <div class="sub"><b>Hypothesis:</b> split into those happy to keep smoking for good, and daily smokers who want to change at some point. Given the size, this group likely needs splitting a few ways.</div></div>
+        <div class="lane mcu"><span class="tag">Smoke + regular RRP</span><h4>Multi-category users</h4>
+          <div class="sub"><b>Hypothesis:</b> two types. Smoking lovers dragged into RRP for occasions where they can't smoke. And leavers, using RRP most of the time on the way out of smoking.</div></div>
+        <div class="lane rrp"><span class="tag">No longer smoke</span><h4>RRP users</h4>
+          <div class="sub">Heat-not-burn only, vape only, pouch only, and a small group mixing two or three.</div></div>
+      </div>
+
+      <h3>Layer 2: psychographic, explains brand to brand choice</h3>
+      <p>Brand groups liked the old psychographic view and want it back: show-offs vs those who want to fit in, excitement seekers vs conservative. This layer also carries brand equity and some shopper. Two questionnaires follow this split: a category questionnaire for Layer 1 and a sub-segment questionnaire for Layer 2.</p>
+
+      <h3>The commercial test: the Ploom kiosk</h3>
+      <p>JTI loses money every time it hands someone a Ploom device. It's an investment. But often the device ends up in a bin a week or two later. The segmentation has to tell them who to give it to. The ambition: shrink ~250 questionnaire variables into about 6 golden questions overall, and 4 to 5 for Layer 1. Someone walks into a kiosk, answers them, and staff know whether to hand over the device or not.</p>
+
+      <div class="grid3">
+        <div class="card"><span class="tag">Must be</span><h4>Simple and distinctive</h4><p>Elevator test: explain segment 1 vs segment 2 between the 7th floor and the 1st.</p></div>
+        <div class="card"><span class="tag">Must be</span><h4>Measurable and actionable</h4><p>A few questions can classify someone, and the result tells you what to do.</p></div>
+        <div class="card"><span class="tag">Must be</span><h4>Market-relevant</h4><p>A global "red thread" skeleton. Markets add the meat on the bone, like demographics. Smokers in Japan are older than in Nigeria.</p></div>
+      </div>
+
+      <h3>Forces of progress: where our pilot fits</h3>
+      <p>The ReWired work uses forces of progress to explain switching:</p>
+      <div class="grid2">
+        <div class="card"><h4>Push</h4><p>Pain points of smoking pushing you out.</p></div>
+        <div class="card"><h4>Pull</h4><p>Attraction of RRP: healthier, more flavours.</p></div>
+        <div class="card"><h4>Anxiety</h4><p>Worries about the new product: leaks in the bag, can't hold it properly, no nature smell when you open it.</p></div>
+        <div class="card"><h4>Habit</h4><p>The old ritual: lighting up, the inhale and exhale. Number of moments links to habit too.</p></div>
+      </div>
+      <p>JTI said this is the part Netscribes knows best, since the pilot analysis was built on hypotheses around push, pull, anxiety and habit, and Sharad confirmed it. JTI was open that forces of progress was included partly for internal reasons, because another part of the business sees it as the best lens. They described the approach as "belt and braces": both consumption jobs and forces of progress are covered in the questionnaire.</p>
+
+      <h3>Supporting lists we'll get</h3>
+      <ul>
+        <li><b>Consumption jobs</b> with descriptions (e.g. "getting ready for the challenge" when groggy and need to wake up focused = energise).</li>
+        <li><b>Switching jobs</b>, recently updated with one more added.</li>
+        <li><b>Moments list</b>, deliberately limited, chosen for a spread across jobs. Breaks at work lean towards relaxing; breaks with colleagues towards fostering relationships.</li>
+        <li><b>Product drivers list</b> (taste, tobacco satisfaction, ease of maintenance and so on), adjusted after legal feedback.</li>
+        <li><b>Behaviour change battery</b>: awareness, consideration, future intentions, trial, purchase, daily use. JTI stressed nothing in the questionnaire is aimless; every question has a purpose. They want our view on scales, linkages and what analysis is possible.</li>
+      </ul>
+    </section>
+
+    <section id="sampling">
+      <h2>Sampling and weighting discussion</h2>
+      <p class="sec-sub">Our team raised how demographic weights would work across geographies, since the pilot had no weighting and a common framework is the goal.</p>
+      <div class="grid2">
+        <div class="card"><h4>What JTI confirmed</h4><ul>
+          <li>Within each market: a majority <b>nationally representative sample</b> of nicotine and tobacco users, plus <b>boosts for low-incidence groups</b> such as pouch users.</li>
+          <li>Across markets: <b>roughly similar sample sizes</b>, not proportional to population. India having several times more smokers than the UK won't mean several times the sample. Around <b>1,500 respondents per market</b> was mentioned.</li>
+          <li>This is a full adult study run outside the panel, so <b>all demographics are in the questionnaire</b>. The pilot data we got likely lacked the panel's demographic fields.</li>
+          <li>Ipsos already has detailed incidence data for sampling. JTI can share detailed weights by category, gender, age and even sub-category if needed.</li>
+          <li><b>One framework across all markets.</b> Some cells may be empty in some countries, but the framework won't change.</li></ul></div>
+        <div class="card"><h4>How weighting will be handled</h4><ul>
+          <li><b>No weighting while building the segmentation.</b></li>
+          <li>Once segments exist, weight up or down to population for sizing, so the business can see global counts in millions.</li>
+          <li>Our concern: without a plan for cross-country weighting at aggregation, there could be rework going back market by market. JTI agreed it's a fair point; the exact weighting approach (e.g. by respondent) is still to be discussed with Federico.</li>
+          <li>Suggestion made on the call: Federico to share an overview of the markets and incidences (combustible, multi-category, etc.) so we know who is being surveyed.</li></ul></div>
+      </div>
+      <h3>Timing mentioned</h3>
+      <p>First batch of markets after November, the rest early next year (February to March). Results to cover all markets, with the global framework carried through and enough market specificity for local teams to use it.</p>
+    </section>
+
+    <section id="forus">
+      <h2>What this means for us</h2>
+      <p class="sec-sub">Practical takeaways and open items for the Netscribes team.</p>
+      <div class="grid2">
+        <div class="card"><h4>Carry into our analysis</h4><ul>
+          <li>Layer 1 is behavioural and about category change. Our STRUGGLE and ease-of-progress thinking from the pilot sits naturally here, since it was built on push, pull, anxiety and habit.</li>
+          <li>Think early about variable reduction. The real deliverable is a small set of golden questions that classify people reliably, not a complex algorithm.</li>
+          <li>Every segment must pass the elevator test and be clearly different in behaviour, not a mix of everything.</li>
+          <li>Keep segment definitions market-agnostic; leave demographics as the market layer.</li>
+          <li>Use moments and consumption jobs as category agnostic across cigarettes, HnB, vapes and pouches.</li></ul></div>
+        <div class="card"><h4>Watch-outs</h4><ul>
+          <li>Always write "young adults" / "younger adults" in anything we send.</li>
+          <li>Don't introduce new frameworks. Map to 5W+H and the existing lists.</li>
+          <li>Don't repeat the old mistake of clustering on everything at once.</li>
+          <li>JTI asked for parts of this session to be treated carefully as they touched on sensitive topics. Keep this summary internal.</li></ul></div>
+        <div class="card"><h4>Open items to follow up</h4><ul>
+          <li>Agree the cross-market weighting approach for aggregation (who: Federico and JTI analytics).</li>
+          <li>Get the market list, incidences and booster plan.</li>
+          <li>Get the final consumption jobs, switching jobs, moments and driver lists.</li>
+          <li>Confirm we'll receive full demographics this time.</li></ul></div>
+        <div class="card"><h4>Prep for the next session</h4><ul>
+          <li>Walkthrough of both questionnaires (category and brand).</li>
+          <li>How JTI plans to build the Layer 1 segments.</li>
+          <li>Come with a view on scales, question linkages and feasible analysis.</li>
+          <li>Light background reading on forces of progress and the transtheoretical model.</li></ul></div>
+      </div>
+    </section>
+
+    <section id="flow">
+      <h2>Session flow by timestamp</h2>
+      <p class="sec-sub">Chronological walkthrough so you can jump into the recording.</p>
+      <ol class="flow">
+        <li><span class="t">00:00</span><div><b>Kick-off and agenda</b><span class="d">Small talk, then Federico frames the purpose: basics of the smoking ritual, JTI frameworks of the last few years, the segmentation, and later the final questionnaire. Sessions are mainly for the Netscribes team.</span></div></li>
+        <li><span class="t">04:10</span><div><b>Sensitivity note</b><span class="d">Speaker flags that some content is sensitive and prefers it not be recorded; offers to share a more carefully worded version later.</span></div></li>
+        <li><span class="t">05:51</span><div><b>JTI mandate: fulfilling moments</b><span class="d">Pleasure as a coping mechanism; smoking delivers through moments, senses and feelings.</span></div></li>
+        <li><span class="t">08:09</span><div><b>The five-minute moment</b><span class="d">Clock smoking, COVID balcony, the boxer's corner, the "whistle-stop of pleasure".</span></div></li>
+        <li><span class="t">10:59</span><div><b>How a fulfilling moment forms</b><span class="d">Circumstances, need states (morning vs Friday pub), smoking makes it better, pain points follow.</span></div></li>
+        <li><span class="t">14:37</span><div><b>How many moments exist</b><span class="d">Routine day moments and frequent non-routines (stress, boredom, celebration, socialising).</span></div></li>
+        <li><span class="t">17:40</span><div><b>Ritual and meaning</b><span class="d">Routine acts vs rituals; the cigarette as "soundtrack to the moment".</span></div></li>
+        <li><span class="t">19:41</span><div><b>The five senses</b><span class="d">Pack, lighting and the edge, smoke and serenity, taste, body language, breathing, holding, extinguishing.</span></div></li>
+        <li><span class="t">27:43</span><div><b>Why switching is hard</b><span class="d">Sensorial delights vanish in RRP, leading to struggle.</span></div></li>
+        <li><span class="t">29:48</span><div><b>The feelings</b><span class="d">Retreat, connoisseurship, social facilitation (where the category begins), self-expression.</span></div></li>
+        <li><span class="t">34:21</span><div><b>Pulp Fiction scene</b><span class="d">All elements of the ritual in one social moment.</span></div></li>
+        <li><span class="t">36:29</span><div><b>Q&amp;A: switching routes</b><span class="d">Stay cigarette-like vs leave behind; Japan vs UK/US; exploratory consumers.</span></div></li>
+        <li><span class="t">38:57</span><div><b>Q&amp;A: young adults</b><span class="d">Terminology rule; RRP as starting point for young adults, but cigarettes still the main entry.</span></div></li>
+        <li><span class="t">41:55</span><div><b>5W+H introduced</b><span class="d">Who, why, where, what, how, what's next.</span></div></li>
+        <li><span class="t">45:22</span><div><b>Why: jobs and pain points</b><span class="d">ReWired and forces of progress; 5 consumption jobs; 5 pain points.</span></div></li>
+        <li><span class="t">47:54</span><div><b>Where, What, How</b><span class="d">Moments; equity vs product drivers; transtheoretical model and self-efficacy.</span></div></li>
+        <li><span class="t">51:39</span><div><b>Framework proliferation</b><span class="d">Too many frameworks over the years; moments only recently added; switch moment by moment.</span></div></li>
+        <li><span class="t">55:38</span><div><b>Commercial engine and old segments</b><span class="d">Believable but not actionable; Traditional Confident, Image Seekers, Smart Economizers, Conscious, Socializers.</span></div></li>
+        <li><span class="t">59:51</span><div><b>Q&amp;A: how the old segments were built</b><span class="d">Everything thrown into clustering; behaviours spread across all segments. Dark category context.</span></div></li>
+        <li><span class="t">1:04:22</span><div><b>Layer 1 and Layer 2</b><span class="d">Behaviour plus affinity; smokers, multi-category, RRP; sub-group hypotheses.</span></div></li>
+        <li><span class="t">1:07:57</span><div><b>The Ploom kiosk problem</b><span class="d">Criteria for the segmentation; elevator test; global skeleton, local meat.</span></div></li>
+        <li><span class="t">1:11:16</span><div><b>Golden questions</b><span class="d">250 variables down to about 6; 4 to 5 for Layer 1.</span></div></li>
+        <li><span class="t">1:12:06</span><div><b>Forces of progress</b><span class="d">Push, pull, anxiety, habit; link to Netscribes' pilot.</span></div></li>
+        <li><span class="t">1:14:14</span><div><b>Jobs, moments and driver lists</b><span class="d">Preview of what the questionnaire uses; two questionnaires explained.</span></div></li>
+        <li><span class="t">1:17:38</span><div><b>Q&amp;A: sampling and weighting</b><span class="d">Nat rep plus boosts, similar sample per market, weighting after segmentation, timing and ~1,500 per market.</span></div></li>
+      </ol>
+      <p class="note" style="margin-top:20px">Summary prepared from an automatic transcript of the recording. Some names and figures were hard to make out in the audio and may need a check against the deck shared on the call.</p>
+    </section>
+  </main>
+</div>
+</body></html>
